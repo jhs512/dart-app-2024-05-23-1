@@ -16,7 +16,13 @@ void main() {
       stdout.write('내용 : ');
       final String content = stdin.readLineSync()!.trim();
       todos.add(Todo(content));
-      print(todos[0]);
+    } else if (cmd == 'list') {
+      print('번호 / 작성날짜 / 수정날짜 / 내용');
+
+      for (final todo in todos.reversed) {
+        print(
+            '${todo.id} / ${todo.createDateForPrint} / ${todo.modifyDateForPrint} / ${todo.content}');
+      }
     } else if (cmd == 'exit') break;
   }
 
@@ -52,5 +58,6 @@ class Todo {
 void printHelp() {
   print('help - 도움말을 표시합니다.');
   print('add - 할 일을 추가합니다.');
+  print('list - 할 일 목록을 표시합니다.');
   print('exit - 프로그램을 종료합니다.');
 }
